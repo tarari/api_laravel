@@ -21,7 +21,9 @@ use App\Http\Controllers\ProfileController;
 Route::get('/', function () {
     return view('welcome');
 });
-
+Route::get('/logout',function(){
+    Auth::logout();
+})->name('logout');
 Route::get('/dashboard',[DashboardController::class,'index'])
 ->middleware(['auth', 'verified'])->name('dashboard');
 
