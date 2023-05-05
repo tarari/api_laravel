@@ -12,6 +12,8 @@ class DashboardController extends Controller
         $url=env('APP_URL').'/api/posts';
         $response=Http::get($url);
         $data = json_decode($response->body(), true);
+        return view('dashboard',['posts'=>$data]);
+
 
     }
 }
