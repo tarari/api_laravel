@@ -9,8 +9,8 @@ class DashboardController extends Controller
 {
 
     function index(){
-
-        $response=Http::get('http://localhost:8000/api/posts');
+        $url=env('APP_URL').'/api/posts';
+        $response=Http::get($url);
         $data = json_decode($response->body(), true);
         dd($data);
     }
