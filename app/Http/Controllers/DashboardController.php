@@ -13,9 +13,9 @@ class DashboardController extends Controller
         $url=env('APP_URL').'/api/posts';
 
         $token = $request->user()->createToken('api_token')->plainTextToken;
-        $response=Http::withHeaders(['Authorization' => 'Bearer '.$token,
+        $response=Http::timeout(60)->withHeaders(['Authorization' => 'Bearer '.$token,
         'Accept' => 'application/json',])->get($url);
-
+        dd($response);
         $data = json_decode($response->body(), true);
         dd($data);
         return view('dashboard',['posts'=>$data]);
