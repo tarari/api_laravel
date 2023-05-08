@@ -13,10 +13,10 @@ class DashboardController extends Controller
         $url=env('APP_URL').'/api/posts';
 
         $token = $request->user()->createToken('api_token')->plainTextToken;
-        dd($token);
         $response=Http::withToken($token)->withHeaders(['Content-Type' => 'application/json',])->get($url);
 
         $data = json_decode($response->body(), true);
+        dd($data);
         return view('dashboard',['posts'=>$data]);
 
 
