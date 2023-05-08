@@ -13,7 +13,8 @@ class DashboardController extends Controller
         $url=env('APP_URL').'/api/posts';
 
         $token = $request->user()->createToken('api_token')->plainTextToken;
-        $response=Http::withToken($token)->withHeaders(['Content-Type' => 'application/json',])->get($url);
+        $response=Http::withHeaders(['Authorization' => 'Bearer '.$token,
+        'Accept' => 'application/json',])->get($url);
 
         $data = json_decode($response->body(), true);
         dd($data);
